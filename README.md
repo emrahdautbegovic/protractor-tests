@@ -2,7 +2,8 @@
 
 This project contains test scripts
 
-Prerequisites: Node is installed
+Prerequisites: Node is installed <br>
+
 How to run tests:
   1. Open project folder through command line
   2. Enter: npm install
