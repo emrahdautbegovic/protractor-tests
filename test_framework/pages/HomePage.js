@@ -1,9 +1,9 @@
-// LoginPage is page object which should have identifier for all
-// elements on Log In page and functions to workaround with them
 var EC = protractor.ExpectedConditions;
 var until = protractor.ExpectedConditions;
+
+
 var HomePage = function() {
-  // element locators, how to use them: http://www.protractortest.org/#/locators
+
   var searchButton = element(by.css('.pretraga-lupa'))
   var searchInput = element(by.name('pojam'))
   var klixLogo = element(by.css('.logoimg'))
