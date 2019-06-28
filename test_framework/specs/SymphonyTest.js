@@ -1,0 +1,98 @@
+var homePage = require('../pages/HomePage.js');
+var registrationPage = require('../pages/RegistrationPage.js');
+var personalInfoPage = require('../pages/EnterPersonalInformationPage.js');
+var productsPage = require('../pages/ProductsPage.js');
+
+var randomNum = require('../helpers/RandomNumHelper.js');
+ 
+describe('Symphony QA Test Automation Challenge tests - Task 1', function() {
+    it('Maximize browser window and navigate to page', function() {
+        homePage.startApp()
+        console.log('open application')
+        homePage.visualCheck()
+        console.log('check if home page UI elements are displayed')
+        
+    })
+    it('Create account', function() {
+        var rand = randomNum.getRandom8DigitNum()
+        homePage.clickOnSingIn()
+        console.log('click on Sign In button')
+        registrationPage.enterEmail('emrah.dautbegovic.qa' + rand + '@gmail.com')
+        console.log('enter email')
+        registrationPage.clickOnCreateAccountButton()
+        console.log('click on create account')
+        registrationPage.browserSleep(2000)
+        console.log('page is fully loaded')
+        personalInfoPage.enterFirstNameInPersonalInfo("Emrah")
+        console.log('enter firstname')
+        personalInfoPage.enterLastNameInPersonalInfo("Dautbegovic")
+        console.log('enter lastname')
+        personalInfoPage.selectMaleGender()
+        console.log('select male')
+        personalInfoPage.enterPasswordInPersonalInfo("Emrah123!")
+        console.log('enter password')
+        personalInfoPage.selectBirthdayDay(29)
+        console.log('select day')
+        personalInfoPage.selectBirthdayMonth(10)
+        console.log('select month')
+        personalInfoPage.selectBirthdayYear(1992)
+        console.log('select year')
+        personalInfoPage.clickOnNewsletterChbox()
+        console.log('check newsletter')
+        personalInfoPage.checkOptin()
+        console.log('check optin')
+        personalInfoPage.enterNameInAddressForm("Emrah")
+        console.log('enter address form name')
+        personalInfoPage.enterLastameInAddressForm("Dautbegovic")
+        console.log('enter address form lastname')
+        personalInfoPage.enterCompanyInAddressForm("Depending on Test results - Enterprise Solutions")
+        console.log('enter company')
+        personalInfoPage.enterAddress1("Test street 1")
+        console.log('enter address 1')
+        personalInfoPage.enterAddress2("Test street 2")
+        console.log('enter address 2')
+        personalInfoPage.enterCity("Phoenix")
+        console.log('enter city')
+        personalInfoPage.enterZipcode("85001")
+        console.log('enter city')
+        personalInfoPage.selectState("Arizona")
+        console.log('enter city')
+        personalInfoPage.enterAdditionalInfo("This form is really big :)")
+        console.log('enter additional info')
+        personalInfoPage.enterHomePhone("+1 480-625-3005")
+        console.log('enter home phone')
+        personalInfoPage.enterMobilePhone("+1 602-509-6995")
+        console.log('enter mobile phone')
+        personalInfoPage.enterAlias("My neverland address in desert")
+        console.log('enter alias')
+        personalInfoPage.clickSubmitBtn()
+        console.log('submit registration')
+        personalInfoPage.browserSleep(4000)
+        productsPage.visualCheck()
+
+        console.log('sign out button is displayed')
+    })
+    it('Popular products category has 7 products', function() {
+        productsPage.clickOnWomenMenuItem()
+        console.log('click on women menu item')
+        productsPage.browserSleep(5000)
+        productsPage.visualCheck()
+        console.log('popular products displayed')
+        productsPage.checkProductsNumber(7)
+        console.log('there are 7 popular products')
+    })
+    it('Best seller category has 7 products', function() {
+        productsPage.clickOnBestSellers()
+        console.log('click on best sellers')
+        productsPage.browserSleep(5000)
+        productsPage.checkProductsNumber(7)
+        console.log('there are 7 best sellers')
+    })
+    it('Search for printed dresses and save results', function() {
+        productsPage.searchForItem("printed dresses")
+        productsPage.browserSleep(4000)
+    })
+   
+})
+
+ 

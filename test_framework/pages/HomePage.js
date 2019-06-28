@@ -1,21 +1,9 @@
-var EC = protractor.ExpectedConditions;
-var until = protractor.ExpectedConditions;
-
-
 var HomePage = function() {
-
-  var searchButton = element(by.css('.pretraga-lupa'))
-  var searchInput = element(by.name('pojam'))
-  var klixLogo = element(by.css('.logoimg'))
-  var vijestiMenu = element(by.cssContainingText('.tch_vijesti', 'Vijesti'))
-  var noResults = element(by.xpath('//body[contains(text(), "Nema rezultata")]'))
-  var startSearch = element(by.css('.icon_enter'))
+  var signIn = element(by.xpath('//a[contains(text(), "Sign in")]')) //Found out that xpath could really be interresting and simple (thx to Amir G.)
 
   this.visualCheck = function(){
     var promiseList = []
-    promiseList.push(browser.wait(searchButton, 5000, "Search button not found"))
-    promiseList.push(browser.wait(klixLogo, 5000, "Klix logo is not displayed"))
-    promiseList.push(browser.wait(vijestiMenu, 5000, "Menu vijesti is not displayed"))
+    promiseList.push(browser.wait(signIn, 5000, "Sign in button not found"))
     return Promise.all(promiseList).then(function(results){
       return new Promise((resolve, reject) => { setTimeout(() => { resolve(); }, 5000); });
     }, function(err){
@@ -23,26 +11,13 @@ var HomePage = function() {
     })
   }
 
-  this.startKlix = function() {
+  this.startApp = function() {
     browser.ignoreSynchronization = true
-    browser.get('https://www.klix.ba/', 20000)
+    browser.get('http://automationpractice.com/', 20000)
   };
 
-  this.clickOnSearchIcon = function() {
-    searchButton.click()
-  }
-
-  this.enterSearchText = function(text) {
-    browser.wait(searchInput, 5000, "Search button not found")
-    searchInput.click().sendKeys(text)
-  }
-
-  this.startSearch = function() {
-    startSearch.click()
-  }
-
-  this.noResultsScreenIsDisplayed = function() {
-    browser.wait(noResults, 5000, "No results screen error")
+  this.clickOnSingIn = function() {
+    signIn.click()
   }
 };
 

@@ -1,7 +1,7 @@
 // Configuration file expects testSuite and brower to be passed as parameters
 // while executing tests. These parameters will be used to execute specific
 // test category against determined browser
-var HtmlReporter = require('protractor-beautiful-reporter');
+var reporters = require('jasmine-reporters');
 
 exports.config = {
   framework: 'jasmine',
@@ -10,13 +10,25 @@ exports.config = {
     'browserName': 'chrome'
   },
   suites: {
-    search: './specs/SearchSpecs.js' ,
+    symphonyTest: './specs/SymphonyTest.js' ,
     regression: './specs/*.js'
   },
+
+  jasmineNodeOpts: {
+    showColors: true,
+    defaultTimeoutInterval: 360000
+  },
+
+  allScriptsTimeout: 360000, 
+
   onPrepare: function () {
+
     browser.manage().window().maximize(); 
-    jasmine.getEnv().addReporter(new HtmlReporter({
-        baseDirectory: './reports'
-    }).getJasmine2Reporter());// maximize the browser before executing the feature files
+
+    var junitReporter = new reporters.JUnitXmlReporter({
+        savePath: './test_framework/reports',
+        consolidateAll: false
+    })
+    jasmine.getEnv().addReporter(junitReporter)
   }
 };
